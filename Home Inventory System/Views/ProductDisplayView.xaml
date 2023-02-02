@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Home_Inventory_System.Views.ProductDisplayView"
+             Title="ProductDisplayView"
+             BackgroundColor="{StaticResource Primary}">
+
+    
+    <Grid 
+        ColumnDefinitions="200,*">
+
+        <Grid RowDefinitions="*,*,*">
+            <Button
+                Text="Add Mode"
+                TextColor="White"
+                BackgroundColor="Green"
+                Command="{Binding ChangeModeCommand}"
+                CommandParameter="0"/>
+
+            <Button
+                Grid.Row="1"
+                Text="Remove Mode"
+                TextColor="White"
+                BackgroundColor="Red"
+                Command="{Binding ChangeModeCommand}"
+                CommandParameter="1"/>
+
+            <Button
+                Grid.Row="2"
+                Text="View Mode"
+                TextColor="White"
+                BackgroundColor="Green"
+                Command="{Binding ChangeModeCommand}"
+                CommandParameter="2"/>
+        </Grid>
+
+
+        <Grid Grid.Column="1"
+              RowDefinitions="80,120,*">
+            <Label 
+                Grid.Row="0"
+                Text="{Binding ViewMode}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                TextColor="White"
+                FontSize="60"
+                FontAttributes="Bold"
+            />
+            <Label 
+                Grid.Row="1"
+                Text="{Binding ProductName}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                TextColor="White"
+                FontSize="80"
+                FontAttributes="Bold"
+                />
+            
+            <Label 
+                Grid.Row="2"
+                Text="{Binding ProductAmount}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                TextColor="White"
+                FontSize="400"
+                FontAttributes="Bold"/>
+        </Grid>
+
+        
+
+
+
+    </Grid>
+</ContentPage>

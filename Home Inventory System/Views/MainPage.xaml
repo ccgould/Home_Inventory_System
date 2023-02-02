@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfgrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:behaviors="clr-namespace:Home_Inventory_System.Behaviours"
+             x:Class="Home_Inventory_System.Views.MainPage"
+             BackgroundColor="{StaticResource Gray100}">
+
+
+    <ContentPage.Behaviors>
+        <behaviors:FilteringBehavior/>
+        <!--<behaviors:SelectionBehavior/>-->
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="Auto, Auto, *" Margin="10">
+
+        <Grid Grid.Row="0" ColumnDefinitions="*, Auto, Auto" >
+            <Label Text="Products" TextColor="{StaticResource Black}" FontSize="40" FontAttributes="Bold"/>
+            <!--<Button Grid.Column="1" Text="Help"/>
+            <Button Grid.Column="2" Text="Settings"/>-->
+        </Grid>
+
+        <Frame BorderColor="Gray"
+               Grid.Row="1"
+               Margin="10"
+              BackgroundColor="{StaticResource BackgroundAccent}"
+               
+       CornerRadius="5"
+       Padding="8">
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="5">
+
+                <HorizontalStackLayout  Grid.Column="0" Spacing="5">
+                    <SearchBar x:Name="filterText" WidthRequest="400" Placeholder="Search" PlaceholderColor="white" SearchCommand="{Binding searchTerm}"/>
+                    <Button Text="Refresh" Command="{Binding CollectionDataCommand}" CommandParameter="{Binding .}"/>
+                </HorizontalStackLayout>
+                
+                <Button Grid.Column="2" Text="Create New Product" Command="{Binding CreateProductCommand}" CommandParameter="{Binding .}"/>
+            </Grid>
+        </Frame>
+
+        <sfgrid:SfDataGrid
+            Grid.Row="2"
+            x:Name="dataGrid"
+            AutoGenerateColumnsMode="None"
+            HeaderRowHeight="52"
+            RowHeight="48"
+            ItemsSource="{Binding OrdersInfo}"
+            HorizontalScrollBarVisibility="Always"
+            VerticalScrollBarVisibility="Always"
+            SelectionMode="Multiple"            
+            ColumnWidthMode="Fill"
+            NavigationMode="Row" 
+            SelectedRows="{Binding DataGridSelectedItems}">
+
+            <sfgrid:SfDataGrid.DefaultStyle>
+                <sfgrid:DataGridStyle HeaderRowFontFamily="Roboto-Medium"/>
+            </sfgrid:SfDataGrid.DefaultStyle>
+
+            <sfgrid:SfDataGrid.Columns>
+                <sfgrid:DataGridTextColumn MinimumWidth="120" ColumnWidthMode="Auto" MappingName="Barcode" HeaderText="Barcode" HeaderTextAlignment="Start" CellTextAlignment="Start"/>
+                <sfgrid:DataGridTextColumn MinimumWidth="120" MappingName="CustomerID" HeaderText="Product Name"/>
+                <sfgrid:DataGridTextColumn MinimumWidth="120" MappingName="ShipCity" HeaderText="Amount" ColumnWidthMode="Auto"/>
+            </sfgrid:SfDataGrid.Columns>
+
+           
+        </sfgrid:SfDataGrid>
+    </Grid>
+    
+</ContentPage>
